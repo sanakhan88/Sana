@@ -1,0 +1,25 @@
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff7f0;
+      color: #3b1f00;
+    }
+h1{
+text-align: center;
+
+  }
+  .p{
+margin: 50px;
+
+  }
+  .hero{
+display: flex;
+justify-content: center;
+margin: 50px ;
+gap: 20px;
+  }
+
+ .img{
+width: 800px;
+
+ }
