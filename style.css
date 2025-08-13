@@ -1,19 +1,30 @@
     body {
-      margin: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff7f0;
       color: #3b1f00;
+      cursor: pointer;
     }
 
+ul{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+ul a{
+font-size: 20px;
+      color: #3b1f00;
 
-h1{
-text-align: center;
+}
 
-  }
-  .p{
-margin: 50px;
+li{
+  font-weight: bold;
+list-style: none;
+display: inline-block;
+margin-left: 60px;
+margin-right: 200px;
+}
 
-  }
   .hero{
 display: flex;
 justify-content: center;
@@ -22,10 +33,14 @@ margin: 30px;
 
   }
 .para{
-font-size: 2rem;
+font-size: 50px;
 
 }
+.p1{
+text-align: center;
 
+
+}
 
 .btn1{
 background-color: red;
@@ -37,20 +52,36 @@ margin: 20px;
 border-radius: 20px;
 }
 .btn2{
-background-color: red;
-color: white;
-border: none;
+color:  #3b1f00;
+border: 1 px solid #3b1f00;
 font-size: 15px;
 padding: 10px 80px 15px ;
 margin: 20px;
 border-radius: 20px;
 }
 
- .img{
-width: 800px;
 
- }
- .img2{
-display: flex;
-gap: 20px;
- }
+.banner{
+display: inline-block;
+float: left;
+background-color: white;
+margin-left: 10px 10px 10px 10px;
+border-radius: 30px;
+gap: 10px;
+   }
+  .b{
+border-radius: 20px;
+padding: 10px;
+color:  #3b1f00;
+font-size: 15px;
+  }
+  .b:hover{
+background-color: rgb(184, 184, 184);
+
+  }
+.last{
+display: inline-block;
+background-color: rgb(221, 220, 220);
+margin: 30px;
+padding: 50px;
+}
