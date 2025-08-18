@@ -1,0 +1,153 @@
+    body {
+      
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff7f0;
+      color: #3b1f00;
+      cursor: pointer;
+    }
+@media(max-width:1000px){
+body{
+background-color: #3b1f00;
+ 
+
+}
+
+}
+@media(max-width:500px){
+body{
+  background-color: antiquewhite;
+}
+
+}
+@font-face {
+  font-family: sana;
+  src: url(Sprintura\ Demo.otf);
+}
+@font-face {
+  font-family: modak;
+  src: url(Modak-Regular.ttf);
+}
+
+ul{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+ul a{
+font-size: 25px;
+ color: #3b1f00;
+
+}
+
+li{
+  text-align: center;
+  font-weight: bold;
+list-style: none;
+display: inline-block;
+margin-left: 60px;
+margin-right: 200px;
+}
+
+  .hero{
+display: flex;
+justify-content: center;
+  }
+.para{
+font-size: 60px;
+  font-family: modak;
+
+}
+.img0{
+height: 400px;
+
+}
+.btn1{
+background-color: red;
+color: white;
+border: none;
+font-size: 15px;
+padding: 15px 90px 15px ;
+margin: 20px;
+border-radius: 20px;
+}
+.btn1:hover{
+background-color: rgb(116, 4, 4);
+cursor: pointer;
+}
+.btn2:hover:hover{
+background-color: rgb(224, 224, 224);
+cursor: pointer;
+}
+.btn2{
+color:  #3b1f00;
+border: 1 px solid #3b1f00;
+font-size: 15px;
+padding: 15px 80px 15px ;
+border-radius: 20px;
+}
+.banner{
+background-color: white;
+display: inline-block;
+border-radius: 60px;
+}
+.img1{
+width: 500px;
+margin-left: 70px;
+margin-top: 0;
+
+}
+.img2{
+width: 500px;
+margin-left: 70px;
+margin-top: 20PX;
+}
+
+  .b{
+    padding: 10px;
+border-radius: 20px;
+color:  #3b1f00;
+font-size: 15px;
+  }
+  .b:hover{
+background-color: rgb(184, 184, 184);
+
+  }
+.img-container{
+  font-family: "Manufacturing Consent", system-ui;
+background-color: rgb(238 232 222);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.img{
+height: 450px;
+margin-left: 20px;
+}
+.img3{
+height: 70px;
+}
+
+
+.last{
+background-color: rgb(80 35 20);
+color: white;
+text-align: center;
+padding: 25px;
+font-size: 12px;
+}
+.footnav{
+font-size: 10px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+color:rgb(234 225 215) ;
+}
+.footnav a{
+text-decoration: none;
+
+}
+.menu{
+text-align: center;
+line-height: 10px;
+}
