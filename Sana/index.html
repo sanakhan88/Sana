@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +13,13 @@
 <body>
 
   <!-- HEADER -->
-  <header>
+  <!-- <header>
 <ul>
   <li><a href="Index.html"><i class="fa-solid fa-bars"></a></i></li>
   <li><a href="Index.html">BURGER KING</a></li>
   <li><a href="Index.html"><i class="fa-solid fa-user"></a></i></li>
-</ul>
-  </header>
+</ul> -->
+  <!-- </header>
 <hr>
 
 <div class="hero">
@@ -34,8 +34,8 @@
 <br><br>
 <div class="banner">
 <img class="img1" src="https://braze-images.com/appboy/communication/marketing/content_cards_message_variations/images/68768162227ba700648b2a2b/d4362d27fc2b4658c19dac3b5bddf173dd06d338/original.jpg?1752596837" alt="">
-<br><p><b>Join Royal Perks—it’s free!
-
+<br><p><b>Join Royal Perks—it’s free! -->
+<!-- 
 </b><br> 
 
 Want to receive FREE Fries with $3+ purchase every week? Sign up for Royal Perks! It's free to<br> join and gives you access to weekly offers, in-app games and much more! Plus, earn 10<br>
@@ -55,9 +55,9 @@ Now you can help The Burger King® Foundation support students' education, right
  
 <div class="img-container">
 <img class="img" src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/da421b826216c29608a2694126a5095f17be8676-630x622.png?w=900&q=75&fit=max&auto=format" alt="">
-<div>
-<h2>Save $$$<br><br>
-With offers on demand</h2>
+<!-- <div>
+<h2>Save $$$<br><br> -->
+<!-- With offers on demand</h2>
 <img class="img3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_sVFe4V4Y3cwIjQ9L2Vz5Qo5gwjGYkFayWw&s" alt="">
 <img class="img3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="">
 <br><br>
@@ -68,8 +68,8 @@ Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. an
 
 <p class="last">TM & Copyright 2025 Burger King Company LLC. All Rights Reserved. 
 <u>Do Not Sell Or Share My Personal Information</u></p>
-<br>
-<footer>
+<br> --> -->
+<!-- <footer>
   <nav class="footnav">
 <div>
   <img width="20" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeErKDpJYx8HmoULXDe-SYZQf2h2_nHjG9Pg&s" alt="">     
@@ -89,4 +89,94 @@ Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. an
   </nav>
 </footer>
 </body>
+</html> --> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid layout</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2b2e56;
+}
+h1{
+text-align: center;
+color: white;
+}
+.Layout {
+    margin: 30px 50px;
+    padding: 10px;
+
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+
+}
+
+.child {
+    border: 1px solid black;
+}
+
+#box-2 {
+    grid-column: 2 / 4;
+}
+
+#box-1 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+#box-6 {
+    grid-column: 4 / 5;
+    grid-row: 2 / 4;
+}
+
+.red {
+    background-color: #ec3437;
+}
+
+.green {
+    background-color: #6dbe4f;
+    
+}
+
+.yellow {
+    background-color: #fbb22f;
+}
+
+
+@media(max-width: 1000px) {
+    .container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+}
+</style>
+</head>
+
+<body>
+    <h1>Grid Layout</h1>
+    <div class="Layout">
+        <div class="child green" id="box-1"></div>
+        <div class="child green" id="box-2"></div>
+        <div class="child red" id="box-3"></div>
+        <div class="child yellow" id="box-4"></div>
+        <div class="child red" id="box-5"></div>
+        <div class="child green" id="box-6"></div>
+        <div class="child red" id="box-7"></div>
+        <div class="child yellow" id="box-8"></div>
+    </div>
+</body>
+
 </html>
