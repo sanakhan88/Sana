@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop watch</title>
+    <style>
+   
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+h1 {
+font-size: 50px;
+color: white;
+font-style: italic;
+text-align: center;
+background: linear-gradient(90deg, #06b6d4, #0f5dd3);
+
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.stopwatch-card {
+  width: 100%;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.stopwatch-card h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+#time {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+
+    background:linear-gradient(
+      90deg,
+      #22d3ee,
+      #ff1313,
+      #078a12
+    );
+    background-size:300% 300%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:gradientMove 6s ease infinite;
+
+    text-shadow:0 8px 30px rgba(168,85,247,.35);
+  }
+
+  @keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.start {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.pause {
+  background: linear-gradient(135deg, #facc15, #eab308);
+}
+
+.reset {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+</style>
+</head>
+<body>
+    <h1>Stop watch</h1>
+
+  <div class="container">
+   <div class="stopwatch-card">
+
+    <H2>Stopwatch</H2>
+    <div id="time">00:00:00</div>
+
+    <div class="controls">
+     <button class="start">Start</button> 
+     <button class="pause">Pause</button> 
+     <button class="reset">Reset</button> 
+    </div>
+   </div>
+  </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
