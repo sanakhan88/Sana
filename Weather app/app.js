@@ -1,27 +1,29 @@
 const apiKey = "96849a6c75134d67906164803261701";
 
-const cityInput = document.getElementById("cityInput");
-const searchBtn = document.getElementById("searchBtn");
+const cityInput = document.querySelector("#cityInput");
+const searchBtn = document.querySelector("#searchBtn");
 
-const cityEl = document.getElementById("city");
-const tempEl = document.getElementById("temp");
-const conditionEl = document.getElementById("condition");
-const humidityEl = document.getElementById("humidity");
-const windEl = document.getElementById("wind");
-const feelsEl = document.getElementById("feelsLike");
-const iconEl = document.getElementById("weatherIcon");
+const city = document.querySelector("#city");
+const temp = document.querySelector("#temp");
+const condition = document.querySelector("#condition");
+const humidity = document.querySelector("#humidity");
+const wind = document.querySelector("#wind");
+const feels = document.querySelector("#feelsLike");
+const icon = document.querySelector("#weatherIcon");
 
 searchBtn.addEventListener("click", () => {
   const city = cityInput.value.trim();
   console.log("City entered:", city);
 
-  if (!city) return;
+  if (!city) 
+    return;
   getWeather(city);
 });
 
 function getWeather(city) {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
   console.log("API URL:", url);
+
 
   fetch(url)
     .then(res => res.json())
@@ -33,13 +35,15 @@ function getWeather(city) {
         return;
       }
 
-      cityEl.innerText = data.location.name;
-      tempEl.innerText = data.current.temp_c + " °C";
-      conditionEl.innerText = data.current.condition.text;
-      humidityEl.innerText = data.current.humidity + "%";
-      windEl.innerText = data.current.wind_kph + " km/h";
-      feelsEl.innerText = data.current.feelslike_c + "°C";
-      iconEl.src = "https:" + data.current.condition.icon;
+      city.innerHTML = data.location.name;
+      temp.innerHTML = data.current.temp_c + " °C";
+      condition.innerHTML = data.current.condition.text;
+      humidity.innerHTML = data.current.humidity + "%";
+      wind.innerHTML = data.current.wind_kph + " km/h";
+      feels.innerHTML = data.current.feelslike_c + "°C";
+      icon.src = "https:" + data.current.condition.icon;
     })
     .catch(err => console.error("Error:", err));
 }
+
+
