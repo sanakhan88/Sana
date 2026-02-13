@@ -3,15 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BURGER KING</title>
+    <title>Burgerking</title>
+      <link href="/src/output.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manufacturing+Consent&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  </head>
-<body>
+   <style>
+body {
+      
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff7f0;
+      color: #3b1f00;
+      cursor: pointer;
+    }
+@media(max-width:1000px){
+body{
+background-color: #3b1f00;
+ 
 
+}
+
+}
+@media(max-width:500px){
+body{
+  background-color: antiquewhite;
+}
+
+}
+@font-face {
+  font-family: sana;
+  src: url(Sprintura\ Demo.otf);
+}
+@font-face {
+  font-family: modak;
+  src: url(Modak-Regular.ttf);
+}
+
+ul{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+ul a{
+font-size: 25px;
+ color: #3b1f00;
+
+}
+
+li{
+  text-align: center;
+  font-weight: bold;
+list-style: none;
+display: inline-block;
+margin-left: 60px;
+margin-right: 200px;
+}
+
+  .hero{
+display: flex;
+justify-content: center;
+  }
+.para{
+font-size: 60px;
+  font-family: modak;
+
+}
+.img0{
+height: 400px;
+
+}
+.btn1{
+background-color: red;
+color: white;
+border: none;
+font-size: 15px;
+padding: 15px 90px 15px ;
+margin: 20px;
+border-radius: 20px;
+}
+.btn1:hover{
+background-color: rgb(116, 4, 4);
+cursor: pointer;
+}
+.btn2:hover:hover{
+background-color: rgb(224, 224, 224);
+cursor: pointer;
+}
+.btn2{
+color:  #3b1f00;
+border: 2 px solid #3b1f00;
+font-size: 15px;
+padding: 15px 80px 15px ;
+border-radius: 20px;
+}
+.banner{
+background-color: white;
+display: inline-block;
+border-radius: 70px;
+padding: 5px;
+margin: 70px;
+}
+.img1{
+width: 500px;
+margin-left: 70px;
+margin-top: 0;
+
+}
+.img2{
+width: 500px;
+margin-left: 70px;
+margin-top: 20PX;
+}
+
+  .b{
+    padding: 10px;
+border-radius: 20px;
+color:  #3b1f00;
+font-size: 15px;
+  }
+  .b:hover{
+background-color: rgb(184, 184, 184);
+
+  }
+.img-container{
+  font-family: "Manufacturing Consent", system-ui;
+background-color: rgb(238 232 222);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.img{
+height: 450px;
+margin-left: 20px;
+}
+.img3{
+height: 70px;
+}
+
+
+.last{
+background-color: rgb(80 35 20);
+color: white;
+text-align: center;
+padding: 25px;
+font-size: 12px;
+}
+.footnav{
+font-size: 10px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+color:rgb(234 225 215) ;
+}
+.footnav a{
+text-decoration: none;
+
+}
+.menu{
+text-align: center;
+line-height: 10px;
+}
+</style>
+</head>
+<body>
+ 
   <!-- HEADER -->
   <header>
 <ul>
@@ -23,35 +182,25 @@
 <hr>
 
 <div class="hero">
-  <p class="para">A BBQ Brisket<br> Whopper®<br> inspired by<br> YOU!<br>
+  <p class="para">Start your<br> BK® order.<br>
     
   <button class="btn1">Order Pickup</button><br>
-  <button class="btn2">Order Delivery</button> <br>
+  <button class="btn2">Order Delivery</button> 
  </p> 
-   <img class="img0" src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/65fd65cbab9bb511070a76c97a103ca06a2b0ffd-2100x1050.png?w=900&q=75&fit=max&auto=format" alt="">
+   <img class="img0" src="https://cdn.sanity.io/images/kjfd81ul/prod_bk_us/9851dbc07fa557031d656c32178945a3c30c46bc-2100x1050.png?w=900&q=75&fit=max&auto=format" alt="">
   </div>
-<p1>At participating U.S. Burger King® restaurants.</p1>
-<br><br>
+<br>
 <div class="banner">
-<img class="img1" src="https://braze-images.com/appboy/communication/marketing/content_cards_message_variations/images/68768162227ba700648b2a2b/d4362d27fc2b4658c19dac3b5bddf173dd06d338/original.jpg?1752596837" alt="">
-<br><p><b>Join Royal Perks—it’s free!
+<img class="img1" src="https://braze-images.com/appboy/communication/marketing/content_cards_message_variations/images/681b7b2f5a17470066dbd901/8444846c093b39399a01507161de7f69718f1ce0/original.jpg?1746632168" alt="">
+<br><p><b>Save with Walmart+ and BK®!
 
 </b><br> 
 
-Want to receive FREE Fries with $3+ purchase every week? Sign up for Royal Perks! It's free to<br> join and gives you access to weekly offers, in-app games and much more! Plus, earn 10<br>
- Crowns... for every $3 spent and redeem for FREE BK®! Only in the BK® App or bk.com.<br>
+Royal Perks members get a Walmart+ membership for $7.77/ month—that’s 40% off! This<br> includes BK® digital savings like 25% off your order, every day, and a FREE Whopper® quarterly<br> with purchase! <br>
 <u>See Terms.</u></p>
-<a href="#"><button class="b">Sign Up</a></button>
+<a href="#"><button class="b">See Terms.</a></button>
 </div>
 
-<div class="banner">
-<img class="img2" src="https://braze-images.com/appboy/communication/marketing/content_cards_message_variations/images/688775e6f9be0d00642a8d78/f4544dff4226980f3b235d9b2c68d08808a09be1/original.jpg?1753708009" alt="">
-<br><p><b>Donate in the BK® App </b><br>
-Now you can help The Burger King® Foundation support students' education, right in the BK®<br> App! Just place an order in the app and select the amount you'd like to donate at checkout.<br>
-<u>See Terms.</u></p>
-<a href="#"><button class="b">Order Now</a></button>
-</div>
-<br><br>
  
 <div class="img-container">
 <img class="img" src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/da421b826216c29608a2694126a5095f17be8676-630x622.png?w=900&q=75&fit=max&auto=format" alt="">
@@ -88,5 +237,8 @@ Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. an
   <br><a href="rewards.html">Rewards</a></div>
   </nav>
 </footer>
+
+
+
 </body>
 </html>
