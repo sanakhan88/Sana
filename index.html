@@ -3,242 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burgerking</title>
-      <link href="/src/output.css" rel="stylesheet">
+    <title>LegalDesk — Lawyer & Client Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* --- CORE STYLING & VARIABLES --- */
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f1f5f9; color: #0f172a; display: flex; justify-content: center; min-height: 100vh; }
+        
+        /* Simulated Smartphone Web View Shell */
+        .phone-wrapper { width: 100%; max-width: 480px; background: #fbfbfd; min-height: 100vh; position: relative; box-shadow: 0 0 40px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
+        .page { display: none; width: 100%; padding: 20px; flex: 1; padding-bottom: 90px; }
+        .page.active { display: block; }
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manufacturing+Consent&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <style>
-body {
-      
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff7f0;
-      color: #3b1f00;
-      cursor: pointer;
-    }
-@media(max-width:1000px){
-body{
-background-color: #3b1f00;
- 
+        /* --- LOADING SCREEN OVERLAY --- */
+        .loading-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background:#ffffff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; font-weight:600; color:#0f172a; font-size:16px; gap:12px; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #0f172a; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-}
+        /* --- SIGN IN / AUTHENTICATION PAGE --- */
+        .auth-container { text-align: center; padding-top: 30px; }
+        .logo-title { font-family: 'Georgia', serif; color: #0f172a; font-size: 26px; margin-bottom: 6px; font-weight: bold; }
+        .subtitle { color: #64748b; font-size: 14px; margin-bottom: 25px; }
+        .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; }
+        .tabs { display: flex; background: #f1f5f9; padding: 4px; border-radius: 10px; margin-bottom: 24px; }
+        .tab { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 8px; font-weight: 600; cursor: pointer; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+        .tab.active { background: white; color: #0f172a; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .form-title { font-family: 'Georgia', serif; font-size: 20px; color: #0f172a; margin-bottom: 12px; text-align: left; }
+        .instruction-text { color: #475569; font-size: 14px; line-height: 1.5; text-align: left; margin-bottom: 20px; }
+        .success-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; color: #16a34a; margin: 0 auto 20px auto; }
+        .alert-text { font-size: 14px; color: #334155; line-height: 1.5; margin-bottom: 12px; }
+        .email-highlight { font-weight: bold; color: #0f172a; word-break: break-all; }
+        .btn { width: 100%; padding: 14px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 10px; color: #334155; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.2s; margin-top: 10px; }
+        .btn:hover { background: #e2e8f0; }
+        .btn-primary { background: #0f172a; color: white; border: none; }
+        .btn-primary:hover { background: #1e293b; }
 
-}
-@media(max-width:500px){
-body{
-  background-color: antiquewhite;
-}
+        /* --- DASHBOARD HEADER & WORKSPACE --- */
+        .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .menu-btn, .notif-btn { background: white; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .welcome-sec h2 { font-family: 'Georgia', serif; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .welcome-sec span { color: #eab308; }
+        .welcome-sec p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
 
-}
-@font-face {
-  font-family: sana;
-  src: url(Sprintura\ Demo.otf);
-}
-@font-face {
-  font-family: modak;
-  src: url(Modak-Regular.ttf);
-}
+        /* Announcement UI Block */
+        .announcement-card { background: white; border-left: 4px solid #1e3a8a; padding: 16px; border-radius: 12px; margin-bottom: 20px; border-top: 1px solid #f1f5f9; border-right: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+        .announcement-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .announcement-title { font-family: 'Georgia', serif; font-size: 15px; font-weight: bold; color: #0f172a; display: flex; align-items: center; gap: 6px; }
+        .badge { background: #fee2e2; color: #ef4444; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .quote { font-style: italic; color: #475569; line-height: 1.5; font-size: 13px; }
+        .date { font-size: 11px; color: #94a3b8; margin-top: 8px; }
 
-ul{
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
-ul a{
-font-size: 25px;
- color: #3b1f00;
+        /* Dashboard Analytical Metrics Grid */
+        .stat-card { background: white; padding: 16px; border-radius: 14px; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .stat-label { color: #64748b; font-size: 13px; font-weight: 500; }
+        .stat-val { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; margin: 4px 0; }
+        .stat-change { font-size: 12px; font-weight: 600; }
+        .pos { color: #22c55e; }
+        .icon-box { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
 
-}
+        /* Section Containers */
+        .section-card { background: white; padding: 20px; border-radius: 14px; border: 1px solid #f1f5f9; margin-bottom: 20px; }
+        .section-title { font-family: 'Georgia', serif; font-size: 18px; margin-bottom: 16px; color: #0f172a; }
 
-li{
-  text-align: center;
-  font-weight: bold;
-list-style: none;
-display: inline-block;
-margin-left: 60px;
-margin-right: 200px;
-}
+        /* Custom Progress Bars for Case Distribution */
+        .prog-row { margin-bottom: 14px; }
+        .prog-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .prog-track { height: 7px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        .prog-bar { height: 100%; border-radius: 4px; }
 
-  .hero{
-display: flex;
-justify-content: center;
-  }
-.para{
-font-size: 60px;
-  font-family: modak;
+        /* Judicial Calendar Component Cards */
+        .hearing-box { border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; gap: 14px; margin-bottom: 12px; background: white; }
+        .cal-badge { background: #f1f5f9; border-radius: 10px; width: 52px; height: 58px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 52px; }
+        .cal-m { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; }
+        .cal-d { font-size: 18px; font-family: 'Georgia', serif; font-weight: bold; color: #0f172a; }
+        .h-info { flex: 1; }
+        .h-top { display: flex; justify-content: space-between; align-items: center; }
+        .h-name { font-weight: bold; font-size: 14px; color: #1e293b; }
+        .h-tag { background: #f1f5f9; color: #475569; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+        .h-meta { display: flex; gap: 12px; font-size: 12px; color: #64748b; margin-top: 6px; }
 
-}
-.img0{
-height: 400px;
+        /* Recent Activity Logging Component */
+        .log-row { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+        .log-text { flex: 1; font-size: 14px; color: #1e293b; }
+        .log-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+        .log-time { font-size: 12px; color: #94a3b8; white-space: nowrap; }
 
-}
-.btn1{
-background-color: red;
-color: white;
-border: none;
-font-size: 15px;
-padding: 15px 90px 15px ;
-margin: 20px;
-border-radius: 20px;
-}
-.btn1:hover{
-background-color: rgb(116, 4, 4);
-cursor: pointer;
-}
-.btn2:hover:hover{
-background-color: rgb(224, 224, 224);
-cursor: pointer;
-}
-.btn2{
-color:  #3b1f00;
-border: 2 px solid #3b1f00;
-font-size: 15px;
-padding: 15px 80px 15px ;
-border-radius: 20px;
-}
-.banner{
-background-color: white;
-display: inline-block;
-border-radius: 70px;
-padding: 5px;
-margin: 70px;
-}
-.img1{
-width: 500px;
-margin-left: 70px;
-margin-top: 0;
-
-}
-.img2{
-width: 500px;
-margin-left: 70px;
-margin-top: 20PX;
-}
-
-  .b{
-    padding: 10px;
-border-radius: 20px;
-color:  #3b1f00;
-font-size: 15px;
-  }
-  .b:hover{
-background-color: rgb(184, 184, 184);
-
-  }
-.img-container{
-  font-family: "Manufacturing Consent", system-ui;
-background-color: rgb(238 232 222);
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.img{
-height: 450px;
-margin-left: 20px;
-}
-.img3{
-height: 70px;
-}
-
-
-.last{
-background-color: rgb(80 35 20);
-color: white;
-text-align: center;
-padding: 25px;
-font-size: 12px;
-}
-.footnav{
-font-size: 10px;
-display: flex;
-align-items: center;
-justify-content: space-around;
-color:rgb(234 225 215) ;
-}
-.footnav a{
-text-decoration: none;
-
-}
-.menu{
-text-align: center;
-line-height: 10px;
-}
-</style>
+        /* Core Floating Action Navigation Trigger */
+        .fab { position: fixed; bottom: 20px; max-width: 440px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); background: #0f172a; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.18); z-index: 99; font-size: 14px; }
+    </style>
 </head>
 <body>
- 
-  <!-- HEADER -->
-  <header>
-<ul>
-  <li><a href="Index.html"><i class="fa-solid fa-bars"></a></i></li>
-  <li><a href="Index.html">BURGER KING</a></li>
-  <li><a href="Index.html"><i class="fa-solid fa-user"></a></i></li>
-</ul>
-  </header>
-<hr>
 
-<div class="hero">
-  <p class="para">Start your<br> BK® order.<br>
-    
-  <button class="btn1">Order Pickup</button><br>
-  <button class="btn2">Order Delivery</button> 
- </p> 
-   <img class="img0" src="https://cdn.sanity.io/images/kjfd81ul/prod_bk_us/9851dbc07fa557031d656c32178945a3c30c46bc-2100x1050.png?w=900&q=75&fit=max&auto=format" alt="">
-  </div>
-<br>
-<div class="banner">
-<img class="img1" src="https://braze-images.com/appboy/communication/marketing/content_cards_message_variations/images/681b7b2f5a17470066dbd901/8444846c093b39399a01507161de7f69718f1ce0/original.jpg?1746632168" alt="">
-<br><p><b>Save with Walmart+ and BK®!
-
-</b><br> 
-
-Royal Perks members get a Walmart+ membership for $7.77/ month—that’s 40% off! This<br> includes BK® digital savings like 25% off your order, every day, and a FREE Whopper® quarterly<br> with purchase! <br>
-<u>See Terms.</u></p>
-<a href="#"><button class="b">See Terms.</a></button>
+<div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <div id="loading-msg">Syncing Live Practice Portal...</div>
 </div>
 
- 
-<div class="img-container">
-<img class="img" src="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/da421b826216c29608a2694126a5095f17be8676-630x622.png?w=900&q=75&fit=max&auto=format" alt="">
-<div>
-<h2>Save $$$<br><br>
-With offers on demand</h2>
-<img class="img3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_sVFe4V4Y3cwIjQ9L2Vz5Qo5gwjGYkFayWw&s" alt="">
-<img class="img3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="">
-<br><br>
-Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other<br> countries. App Store is a service mark of Apple Inc. Google Play is a trademark of Google Inc.<br> Terms apply.
-</div></div>
-<br><br> 
-<br>
+<div class="phone-wrapper">
 
-<p class="last">TM & Copyright 2025 Burger King Company LLC. All Rights Reserved. 
-<u>Do Not Sell Or Share My Personal Information</u></p>
-<br>
-<footer>
-  <nav class="footnav">
-<div>
-  <img width="20" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeErKDpJYx8HmoULXDe-SYZQf2h2_nHjG9Pg&s" alt="">     
-  <br><a href="Index.html"><b>Home</b></a> <br>
+    <div id="loginPage" class="page active">
+        <div class="auth-container">
+            <h1 class="logo-title">LegalDesk — Lawyer Portal</h1>
+            <p class="subtitle">Secure Verification System</p>
+            <div class="card">
+                <div class="tabs">
+                    <button class="tab active"><i data-feather="briefcase" style="width:15px;"></i> Lawyer</button>
+                    <button class="tab" onclick="alert('Client Access Portal under maintenance')"><i data-feather="user" style="width:15px;"></i> Client</button>
+                </div>
+                <h2 class="form-title">Lawyer Access Portal</h2>
+                <p class="instruction-text">Enter your credentials to access your secure cloud practice ecosystem data analytics feed.</p>
+                
+                <div class="success-box" style="background: #eff6ff; color: #3b82f6; border-color: #bfdbfe;">
+                    <i data-feather="shield"></i>
+                </div>
+                <p class="alert-text">Welcome back, <br><span class="email-highlight" id="lblEmail">Advocate Salah Uddin</span></p>
+                <p class="instruction-text" style="text-align: center; font-size: 12px; margin-bottom: 15px; color: #64748b;">Secure biometric and token execution verified successfully.</p>
+                
+                <button class="btn btn-primary" onclick="navigateTo('dashboardPage')">Access Cloud Practice</button>
+                <button class="btn" onclick="alert('Enter structural email fallback configuration')">Request Alternative Access Route</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="page">
+        <div class="header-bar">
+            <button class="menu-btn" onclick="navigateTo('loginPage')"><i data-feather="log-out" style="width:16px;"></i></button>
+            <button class="notif-btn"><i data-feather="bell" style="width:16px;"></i></button>
+        </div>
+
+        <div class="welcome-sec">
+            <h2 id="lblLawyer">Good morning, <span>Advocate...</span></h2>
+            <p>Your cloud practice overview ecosystem data</p>
+        </div>
+
+        <div class="announcement-card">
+            <div class="announcement-header">
+                <div class="announcement-title"><i data-feather="megaphone" style="width:15px; color:#1e3a8a;"></i> System Announcement</div>
+                <span class="badge" id="lblAnnounceTag">Important</span>
+            </div>
+            <p class="quote" id="lblAnnounceQuote">"Justice is the constant and perpetual will to render to every man his due." — Ulpian</p>
+            <p class="date" id="lblAnnounceDate">Loading system logs...</p>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <p class="stat-label">Active Court Cases</p>
+                <p class="stat-val" id="valCases">0</p>
+                <p class="stat-change pos">+3 judicial cycles</p>
+            </div>
+            <div class="icon-box" style="background:#eff6ff; color:#3b82f6;"><i data-feather="briefcase"></i></div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <p class="stat-label">Retained Active Clients</p>
+                <p class="stat-val" id="valClients">0</p>
+                <p class="stat-change pos">+8 onboarding growth</p>
+            </div>
+            <div class="icon-box" style="background:#f0fdf4; color:#22c55e;"><i data-feather="users"></i></div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <p class="stat-label">Pending Account Balances</p>
+                <p class="stat-val" id="valPayments">PKR 0</p>
+                <p class="stat-change" style="color: #ef4444;">Outstanding invoices active</p>
+            </div>
+            <div class="icon-box" style="background:#fffbeb; color:#f59e0b;"><i data-feather="credit-card"></i></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="section-title" style="margin-bottom:2px;">Income Metrics</h3>
+            <p style="font-size:11px; color:#64748b; margin-bottom:15px;">Aggregated Analytics Context Feed (PKR)</p>
+            <h2 style="font-family:'Georgia', serif; margin-bottom:15px;" id="lblTotalIncome">PKR 0.00M <span style="font-size:12px; color:#64748b; font-family:sans-serif; font-weight:normal;">total volume</span></h2>
+            <canvas id="revenueChart" height="180"></canvas>
+        </div>
+
+        <div class="section-card">
+            <h3 class="section-title">Case Distribution Portfolio</h3>
+            <div class="prog-row">
+                <div class="prog-meta"><span>Criminal Litigation</span><span id="lblDistCrim">0 cases</span></div>
+                <div class="prog-track"><div id="barCrim" class="prog-bar" style="width: 0%; background: #ef4444;"></div></div>
+            </div>
+            <div class="prog-row">
+                <div class="prog-meta"><span>Civil Disputes</span><span id="lblDistCivil">0 cases</span></div>
+                <div class="prog-track"><div id="barCivil" class="prog-bar" style="width: 0%; background: #3b82f6;"></div></div>
+            </div>
+            <div class="prog-row">
+                <div class="prog-meta"><span>Matrimonial & Family Court</span><span id="lblDistFamily">0 cases</span></div>
+                <div class="prog-track"><div id="barFamily" class="prog-bar" style="width: 0%; background: #f59e0b;"></div></div>
+            </div>
+            <div class="prog-row">
+                <div class="prog-meta"><span>Corporate Tax Audit</span><span id="lblDistTax">0 cases</span></div>
+                <div class="prog-track"><div id="barTax" class="prog-bar" style="width: 0%; background: #10b981;"></div></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="section-title">Upcoming Judicial Hearings</h3>
+            <div id="hearingsContainer"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="section-title">System Execution Log</h3>
+            <div id="activityContainer"></div>
+        </div>
+
+        <button class="fab"><i data-feather="sparkles" style="width:16px;"></i> Secure Cloud System Operational</button>
+    </div>
+
 </div>
-<div>
-  <img width="20" src="https://cdn-icons-png.flaticon.com/512/1046/1046849.png" alt="">
-  <br><a href="menu.html">Menu</a><br>
-</div>
-<div>
-  <img width="20" src="https://www.pngkit.com/png/detail/257-2577812_special-offer-icon.png" alt="">
-  <br><a href="offer.html">Offers</a><br>
-</div>
-<div>
-    <img width="20" src="https://img.freepik.com/premium-vector/rewards-icon-vector-image-can-be-used-business-onboarding_120816-82610.jpg" alt="">
-  <br><a href="rewards.html">Rewards</a></div>
-  </nav>
-</footer>
 
+<script>
+    // === 1. LIVE SPREADSHEET CONFIG ENGINE ===
+    const SPREADSHEET_ID = '1Xv4b24yV4m8b_0C6j-rS3V-7Vq05zE-v6K36n-X_X68'; 
+    const FALLBACK_ID = '1Xv4b24yV4m8b_0C6j-rS3V-7Vq05zE-v6K36n-X_X68';
 
+    // Application Global Scope Data Models
+    let runtimeAppSchema = {
+        client_email: "nimrasiddiqui5544@gmail.com",
+        lawyer_name: "Advocate Salah Uddin",
+        active_cases: "40",
+        total_clients: "128",
+        pending_payments: "PKR 2.4M",
+        total_income_str: "PKR 2.75M",
+        announcement_tag: "Important",
+        announcement_quote: '"Justice is the constant and perpetual will to render to every man his due." — Ulpian (Roman Jurist)',
+        announcement_date: "June 13, 2026",
+        dist_criminal: "12 cases", dist_crim_pct: "30",
+        dist_civil: "15 cases", dist_civil_pct: "45",
+        dist_family: "6 cases", dist_family_pct: "18",
+        dist_tax: "7 cases", dist_tax_pct: "22"
+    };
 
+    let arrayHearingsCollection = [
+        { m: "Jun", d: "15", name: "Ahmad vs State", sub: "Crl. Appeal 234/2026", tag: "Arguments", loc: "Lahore High Court", time: "10:00 AM" },
+        { m: "Jun", d: "18", name: "Fatima Properties", sub: "CS 89/2025", tag: "Evidence", loc: "Civil Court, Lahore", time: "11:30 AM" },
+        { m: "Jun", d: "22", name: "Khan Industries", sub: "Tax Ref. 12/2026", tag: "Hearing", loc: "Islamabad High Court", time: "09:00 AM" }
+    ];
+
+    let arrayActivitiesCollection = [
+        { icon: "file", color: "#3b82f6", bg: "#eff6ff", text: "New case profile filed", sub: "Malik vs Punjab Govt — Writ Petition", elapsed: "2 hours ago" },
+        { icon: "check-circle", color: "#22c55e", bg: "#f0fdf4", text: "Retainer escrow received", sub: "PKR 50,000 processed from Fatima ...", elapsed: "4 hours ago" },
+        { icon: "upload", color: "#f59e0b", bg: "#fffbeb", text: "Legal document asset uploaded", sub: "Power of Attorney — Khan Industries", elapsed: "6 hours ago" }
+    ];
+
+    // === 2. DATA SYNCHRONIZATION RUNTIME ===
+    async function synchronizeApplicationData() {
+        try {
+            const sheetTargetUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+            const communicationResponse = await fetch(sheetTargetUrl);
+            const operationalText = await communicationResponse.text();
+            
+            const absoluteJson = JSON.parse(operationalText.substr(47).slice(0, -2));
+            const operationalRows = absoluteJson.table.rows;
+            
+            operationalRows.forEach(matrixElement => {
+                if(matrixElement.c && matrixElement.c[0] && matrixElement.c[1]) {
+                    const extractedKey = matrixElement.c[0].v;
+                    const extractedValue = matrixElement.c[1].v;
+                    if(runtimeAppSchema.hasOwnProperty(extractedKey)) {
+                        runtimeAppSchema[extractedKey] = extractedValue;
+                    }
+                }
+            });
+            console.log("Ecosystem synced via global cloud infrastructure.");
+        } catch (faultCatchException) {
+            console.warn("Using localized structural schema configuration parameters.");
+        } finally {
+            executeUiHydrationCompilation();
+        }
+    }
+
+    // === 3. UI RENDERING AND HYDRATION ENGINE ===
+    function executeUiHydrationCompilation() {
+        document.getElementById('lblEmail').innerText = runtimeAppSchema.lawyer_name;
+        document.getElementById('lblLawyer').innerHTML = `Good morning, <span>${runtimeAppSchema.lawyer_name}</span>`;
+        document.getElementById('valCases').innerText = runtimeAppSchema.active_cases;
+        document.getElementById('valClients').innerText = runtimeAppSchema.total_clients;
+        document.getElementById('valPayments').innerText = runtimeAppSchema.pending_payments;
+        document.getElementById('lblTotalIncome').innerHTML = `${runtimeAppSchema.total_income_str} <span style="font-size:12px; color:#64748b; font-family:sans-serif; font-weight:normal;">total volume</span>`;
+        
+        document.getElementById('lblAnnounceTag').innerText = runtimeAppSchema.announcement_tag;
+        document.getElementById('lblAnnounceQuote').innerText = runtimeAppSchema.announcement_quote;
+        document.getElementById('lblAnnounceDate').innerText = runtimeAppSchema.announcement_date;
+
+        document.getElementById('lblDistCrim').innerText = runtimeAppSchema.dist_criminal;
+        document.getElementById('barCrim').style.width = `${runtimeAppSchema.dist_crim_pct}%`;
+        document.getElementById('lblDistCivil').innerText = runtimeAppSchema.dist_civil;
+        document.getElementById('barCivil').style.width = `${runtimeAppSchema.dist_civil_pct}%`;
+        document.getElementById('lblDistFamily').innerText = runtimeAppSchema.dist_family;
+        document.getElementById('barFamily').style.width = `${runtimeAppSchema.dist_family_pct}%`;
+        document.getElementById('lblDistTax').innerText = runtimeAppSchema.dist_tax;
+        document.getElementById('barTax').style.width = `${runtimeAppSchema.dist_tax_pct}%`;
+
+        const hearingsViewTarget = document.getElementById('hearingsContainer');
+        hearingsViewTarget.innerHTML = "";
+        arrayHearingsCollection.forEach(hearingItem => {
+            hearingsViewTarget.innerHTML += `
+                <div class="hearing-box">
+                    <div class="cal-badge"><span class="cal-m">${hearingItem.m}</span><span class="cal-d">${hearingItem.d}</span></div>
+                    <div class="h-info">
+                        <div class="h-top"><span class="h-name">${hearingItem.name}</span><span class="h-tag">${hearingItem.tag}</span></div>
+                        <p style="font-size:12px; color:#64748b; margin-top:2px;">${hearingItem.sub}</p>
+                        <div class="h-meta"><span><i data-feather="map-pin" style="width:12px; height:12px;"></i> ${hearingItem.loc}</span><span><i data-feather="clock" style="width:12px; height:12px;"></i> ${hearingItem.time}</span></div>
+                    </div>
+                </div>`;
+        });
+
+        const activityViewTarget = document.getElementById('activityContainer');
+        activityViewTarget.innerHTML = "";
+        arrayActivitiesCollection.forEach(activityItem => {
+            activityViewTarget.innerHTML += `
+                <div class="log-row">
+                    <div class="icon-box" style="background:${activityItem.bg}; color:${activityItem.color}; width:36px; height:36px; min-width:36px;"><i data-feather="${activityItem.icon}" style="width:16px;"></i></div>
+                    <div class="log-text"><strong>${activityItem.text}</strong><p class="log-sub">${activityItem.sub}</p></div>
+                    <div class="log-time">${activityItem.elapsed}</div>
+                </div>`;
+        });
+
+        document.getElementById('loading').style.display = 'none';
+        feather.replace();
+    }
+
+    // === 4. SPA INTER-PAGE NAVIGATION SYSTEM ===
+    function navigateTo(pageId) {
+        document.querySelectorAll('.page').forEach(viewPane => viewPane.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+        
+        if(pageId === 'dashboardPage') {
+            setTimeout(executeChartInitializationPipeline, 150);
+        }
+    }
+
+    // === 5. ANALYTICAL CHART VECTOR CONTEXT GENERATOR ===
+    function executeChartInitializationPipeline() {
+        const structuralCanvasContext = document.getElementById('revenueChart').getContext('2d');
+        new Chart(structuralCanvasContext, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    data: [310000, 460000, 270000, 490000, 390000, 510000, 220000],
+                    borderColor: '#0f172a',
+                    borderWidth: 2.5,
+                    fill: true,
+                    backgroundColor: 'rgba(15, 23, 42, 0.03)',
+                    tension: 0.38,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#0f172a'
+                }]
+            },
+            options: { 
+                plugins: { legend: { display: false } }, 
+                scales: { 
+                    y: { display: false, grid: { display: false } }, 
+                    x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } } 
+                } 
+            }
+        });
+    }
+
+    window.onload = synchronizeApplicationData;
+</script>
 </body>
 </html>
